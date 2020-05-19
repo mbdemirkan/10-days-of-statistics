@@ -1,0 +1,38 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+n = int(input())
+X = [int(x) for x in input().split()]
+f = [int(x) for x in input().split()]
+S = []
+
+for i in range(n):
+    S = S + [X[i]] * f[i]
+S.sort()
+
+X1 = []
+X2 = []
+
+def median(a):
+    q1_end = 0
+    q2_start = 0
+    if len(a) % 2 == 0:
+        q2_start = int(len(a)/2)
+        q1_end = q2_start - 1
+        return ( a[q1_end] + a[q2_start] ) / 2
+    else:
+        q1_end = int((len(a) - 1) / 2)
+        return a[q1_end]
+
+q1_end = 0
+q2_start = 0
+if len(S) % 2 == 0:
+    q2_start = int(len(S)/2)
+    X1 = S[slice(0, q2_start)]
+    X2 = S[slice(q2_start, len(S))]
+else:
+    q1_end = int((len(S) - 1) / 2)
+    q1_end = q1_end -1
+    q2_start = q1_end + 2
+    X1 = S[slice(0, q1_end + 1)]
+    X2 = S[slice(q2_start, len(S))]
+
+print(round(median(X2) - median(X1) + 0.0, 1))
