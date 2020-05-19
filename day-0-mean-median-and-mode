@@ -1,0 +1,35 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+n=input()
+numbers= [int(x) for x in input().split()]
+numbers.sort()
+
+count=0
+median=0
+mean=0
+
+count_mode_current = 1
+count_mode = 1
+mode=numbers[0]
+
+if (len(numbers) % 2) == 0:
+    median = (numbers[int(len(numbers) / 2) - 1] + numbers[int(len(numbers) / 2)]) / 2
+else:
+    median = numbers[int((len(numbers) - 1) / 2) + 1]
+
+for number in numbers:
+    count = count + 1
+    mean = mean + number
+    if count > 1:
+        if numbers[count - 2] == number:
+            count_mode_current = count_mode_current + 1
+            if count_mode_current > count_mode:
+                mode = number
+                count_mode = count_mode_current
+        else:
+            count_mode_current = 1    
+
+mean = mean / count
+
+print(mean)
+print(median)
+print(mode)
