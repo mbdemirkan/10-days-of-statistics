@@ -1,0 +1,36 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+n = int(input())
+X = [int(x) for x in input().split()]
+X.sort()
+X1 = X
+X2 = X
+
+q1 = 0
+q2 = 0
+q3 = 0
+
+def median(a):
+    if len(a) % 2 == 0:
+        q2_start = int(len(a)/2)
+        q1_end = q2_start - 1
+        return int(( a[q1_end] + a[q2_start] ) / 2)
+    else:
+        q1_end = int((len(a) - 1) / 2)
+        return int(a[q1_end])
+
+q1_end = 0
+q2_start = 0
+if len(X) % 2 == 0:
+    q2_start = int(len(X)/2)
+    X1 = X[slice(0, q2_start)]
+    X2 = X[slice(q2_start, n)]
+else:
+    q1_end = int((len(X) - 1) / 2)
+    q1_end = q1_end -1
+    q2_start = q1_end + 2
+    X1 = X[slice(0, q1_end + 1)]
+    X2 = X[slice(q2_start, n)]
+
+print(median(X1))
+print(median(X))
+print(median(X2))
