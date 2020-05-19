@@ -1,0 +1,12 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+n = input()
+X = [int(x) for x in input().split()]
+w = [float(x) for x in input().split()]
+
+u = 0
+l = 0
+for i in range(len(X)):
+    u = u + X[i] * w[i]
+    l = l + w[i]
+
+print(round(u/l, 1))
